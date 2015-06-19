@@ -1,40 +1,74 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Examples And Demos by healthnlp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Examples And Demos</h1>
-      <h2 class="project-tagline">Health NLP Examples and Demos</h2>
-      <a href="https://github.com/healthnlp/examples" class="btn">View on GitHub</a>
-      <a href="https://github.com/healthnlp/examples/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/healthnlp/examples/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <section class="main-content">
-      <h3>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Health NLP Examples And Demos by healthnlp</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Health NLP Examples And Demos</h1>
+        <h2>Health NLP Examples and Demos</h2>
+        <a href="https://github.com/healthnlp/examples" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
 <a id="welcome-to-health-nlp-examples-and-demos" class="anchor" href="#welcome-to-health-nlp-examples-and-demos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to Health NLP Examples and Demos</h3>
 
 <p>This is a hosting site for Health NLP / cTAKES components Examples and Demos</p>
 
 <h3>
-<a id="available-demos" class="anchor" href="#available-demos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available Demos</h3>
+<a id="available-hosted-demos" class="anchor" href="#available-hosted-demos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available Hosted Demos</h3>
 
-<ol>
-<li>
-<a href="http://52.24.118.198:8080/index.jsp">http://52.24.118.198:8080/index.jsp</a>
-This example outputs the entire CAS from the cTAKES pipeline using the Dictionary Lookup Fast Pipeline.</li>
-</ol>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>URL</th>
+<th>Description</th>
+<th>Host</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ctakes-dictionary-lookup-fast</td>
+<td><a href="http://52.24.118.198:8080/index.jsp">http://52.24.118.198:8080/index.jsp</a></td>
+<td>This example outputs the entire CAS from the cTAKES pipeline using the Dictionary Lookup Fast Pipeline.</td>
+<td>AWS EC2</td>
+</tr>
+<tr>
+<td>ctakes-assertion</td>
+<td>TBA</td>
+<td>TBA</td>
+<td>TBA</td>
+</tr>
+<tr>
+<td>ctakes-dependency-parser</td>
+<td>TBA</td>
+<td>TBA</td>
+<td>TBA</td>
+</tr>
+</tbody>
+</table>
 
 <h3>
-<a id="adding-a-new-demo" class="anchor" href="#adding-a-new-demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding a new demo</h3>
+<a id="adding-a-hosted-new-demo" class="anchor" href="#adding-a-hosted-new-demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding a hosted new demo</h3>
 
 <ol>
 <li>Setup an EC2 instance for demo purposes</li>
@@ -42,25 +76,37 @@ This example outputs the entire CAS from the cTAKES pipeline using the Dictionar
 <li>Git clone the project from the repo</li>
 <li>mvn jetty:run</li>
 <li>Launch browser to your instance:8080/index.jsp</li>
+<li>Update this index page to include your example</li>
 </ol>
+        </section>
 
-<h3>
-<a id="editing-this-page" class="anchor" href="#editing-this-page" aria-hidden="true"><span class="octicon octicon-link"></span></a>Editing this page</h3>
+        <aside id="sidebar">
+          <a href="https://github.com/healthnlp/examples/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/healthnlp/examples/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+          <p class="repo-owner"><a href="https://github.com/healthnlp/examples"></a> is maintained by <a href="https://github.com/healthnlp">healthnlp</a>.</p>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/healthnlp/examples">Examples And Demos</a> is maintained by <a href="https://github.com/healthnlp">healthnlp</a>.</span>
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-41673085-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
-    </section>
-
-  
   </body>
 </html>
-
