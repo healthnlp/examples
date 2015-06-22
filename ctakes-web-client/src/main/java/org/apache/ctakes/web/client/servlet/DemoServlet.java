@@ -69,6 +69,7 @@ public class DemoServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String text = request.getParameter("q");
 		String format = request.getParameter("format");
+		LOGGER.info("###\n" + text + "###\n");
 		if (text != null && text.trim().length() > 0) {
 			try {
 				/*
@@ -101,8 +102,10 @@ public class DemoServlet extends HttpServlet {
 		Collection<TOP> annotations = JCasUtil.selectAll(jcas);
 		if ("html".equalsIgnoreCase(format)) {
 			response.setContentType("text/html");
+			
 			sb.append("<html><head><title></title></head><body><table>");
 			for (TOP a : annotations) {
+				
 				sb.append("<tr>");
 				sb.append("<td>" + a.getType().getShortName() + "</td>");
 				extractFeatures(sb, (FeatureStructure) a);
