@@ -109,10 +109,10 @@ public class Pipeline {
 			builder.add(AnalysisEngineFactory.createEngineDescription(AddEvent.class));
 			// Add Event to Event Relation Annotator
 			builder.add(EventTimeRelationAnnotator
-					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventtime/model.jar"));
+					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventtime/20150629/model.jar"));
 			// Add Event to Event Relation Annotator
 			builder.add(EventEventRelationAnnotator
-					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventevent/model.jar"));
+					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventevent/20150630/model.jar"));
 			
 						
 //	      builder.add( PolarityCleartkAnalysisEngine.createAnnotatorDescription() );
