@@ -20,18 +20,31 @@ package org.apache.ctakes.web.client.servlet;
 
 import java.io.FileNotFoundException;
 
+import org.apache.ctakes.assertion.medfacts.cleartk.PolarityCleartkAnalysisEngine;
+import org.apache.ctakes.assertion.medfacts.cleartk.UncertaintyCleartkAnalysisEngine;
+import org.apache.ctakes.chunker.ae.Chunker;
 import org.apache.ctakes.clinicalpipeline.ClinicalPipelineFactory;
+import org.apache.ctakes.constituency.parser.ae.ConstituencyParser;
+import org.apache.ctakes.contexttokenizer.ae.ContextDependentTokenizerAnnotator;
+import org.apache.ctakes.core.ae.SentenceDetector;
+import org.apache.ctakes.core.ae.SimpleSegmentAnnotator;
+import org.apache.ctakes.core.ae.TokenizerAnnotatorPTB;
 import org.apache.ctakes.core.resource.FileLocator;
 import org.apache.ctakes.core.resource.FileResourceImpl;
 import org.apache.ctakes.dependency.parser.ae.ClearNLPDependencyParserAE;
 import org.apache.ctakes.dictionary.lookup2.ae.AbstractJCasTermAnnotator;
 import org.apache.ctakes.dictionary.lookup2.ae.DefaultJCasTermAnnotator;
 import org.apache.ctakes.dictionary.lookup2.ae.JCasTermAnnotator;
+import org.apache.ctakes.lvg.ae.LvgAnnotator;
+import org.apache.ctakes.postagger.POSTagger;
 import org.apache.ctakes.temporal.ae.BackwardsTimeAnnotator;
 import org.apache.ctakes.temporal.ae.DocTimeRelAnnotator;
 import org.apache.ctakes.temporal.ae.EventAnnotator;
 import org.apache.ctakes.temporal.ae.EventEventRelationAnnotator;
 import org.apache.ctakes.temporal.ae.EventTimeRelationAnnotator;
+import org.apache.ctakes.temporal.eval.Evaluation_ImplBase.CopyNPChunksToLookupWindowAnnotations;
+import org.apache.ctakes.temporal.eval.Evaluation_ImplBase.RemoveEnclosedLookupWindows;
+import org.apache.ctakes.temporal.pipelines.FullTemporalExtractionPipeline.CopyPropertiesToTemporalEventAnnotator;
 import org.apache.ctakes.typesystem.type.refsem.Event;
 import org.apache.ctakes.typesystem.type.refsem.EventProperties;
 import org.apache.ctakes.typesystem.type.textsem.EventMention;
@@ -51,7 +64,18 @@ public class Pipeline {
 	public static AggregateBuilder getAggregateBuilder() throws Exception {
 		AggregateBuilder builder = new AggregateBuilder();
 		//builder.add(ClinicalPipelineFactory.getFastPipeline());
-	      builder.add( ClinicalPipelineFactory.getTokenProcessingPipeline() );
+//	      builder.add( ClinicalPipelineFactory.getTokenProcessingPipeline() );
+		  builder.add(AnalysisEngineFactory.createEngineDescription(SimpleSegmentAnnotator.class));
+		  builder.add( SentenceDetector.createAnnotatorDescription() );
+	      builder.add( TokenizerAnnotatorPTB.createAnnotatorDescription() );
+	      builder.add( LvgAnnotator.createAnnotatorDescription() );
+	      builder.add( ContextDependentTokenizerAnnotator.createAnnotatorDescription() );
+	      builder.add( POSTagger.createAnnotatorDescription() );
+	      builder.add( Chunker.createAnnotatorDescription() );
+	      builder.add( ClinicalPipelineFactory.getStandardChunkAdjusterAnnotator() );
+
+	      builder.add( AnalysisEngineFactory.createEngineDescription( CopyNPChunksToLookupWindowAnnotations.class ) );
+	      builder.add( AnalysisEngineFactory.createEngineDescription( RemoveEnclosedLookupWindows.class ) );
 	      try {
 	         builder.add( AnalysisEngineFactory.createEngineDescription( DefaultJCasTermAnnotator.class,
 	               AbstractJCasTermAnnotator.PARAM_WINDOW_ANNOT_PRP,
@@ -66,24 +90,31 @@ public class Pipeline {
 	         throw new ResourceInitializationException( e );
 	      }
 	      
-			builder.add(ClearNLPDependencyParserAE.createAnnotatorDescription());
+	      builder.add( ClearNLPDependencyParserAE.createAnnotatorDescription() );
+	      builder.add( PolarityCleartkAnalysisEngine.createAnnotatorDescription() );
+	      builder.add( UncertaintyCleartkAnalysisEngine.createAnnotatorDescription() );
+	      builder.add( AnalysisEngineFactory.createEngineDescription( ConstituencyParser.class ) );
+	      	
 			// Add BackwardsTimeAnnotator
 			builder.add(BackwardsTimeAnnotator
 					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/timeannotator/model.jar"));
 			// Add EventAnnotator
 			builder.add(EventAnnotator
 					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventannotator/model.jar"));
+			builder.add( AnalysisEngineFactory.createEngineDescription( CopyPropertiesToTemporalEventAnnotator.class ) );
+			// Add Document Time Relative Annotator
+   			builder.add(DocTimeRelAnnotator
+   					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/doctimerel/model.jar"));
 			//link event to eventMention
 			builder.add(AnalysisEngineFactory.createEngineDescription(AddEvent.class));
 			// Add Event to Event Relation Annotator
-			builder.add(EventEventRelationAnnotator
-					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventevent/model.jar"));
-			// Add Event to Event Relation Annotator
 			builder.add(EventTimeRelationAnnotator
 					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventtime/model.jar"));
-			// Add Document Time Relative Annotator
-			builder.add(DocTimeRelAnnotator
-					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/doctimerel/model.jar"));			
+			// Add Event to Event Relation Annotator
+			builder.add(EventEventRelationAnnotator
+					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventevent/model.jar"));
+			
+						
 //	      builder.add( PolarityCleartkAnalysisEngine.createAnnotatorDescription() );
 //	      builder.add( UncertaintyCleartkAnalysisEngine.createAnnotatorDescription() );
 //	      builder.add( HistoryCleartkAnalysisEngine.createAnnotatorDescription() );
