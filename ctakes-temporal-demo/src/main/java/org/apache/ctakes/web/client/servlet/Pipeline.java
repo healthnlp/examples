@@ -43,6 +43,7 @@ import org.apache.ctakes.temporal.ae.DocTimeRelAnnotator;
 import org.apache.ctakes.temporal.ae.EventAnnotator;
 import org.apache.ctakes.temporal.ae.EventEventRelationAnnotator;
 import org.apache.ctakes.temporal.ae.EventTimeRelationAnnotator;
+import org.apache.ctakes.temporal.ae.EventTimeSelfRelationAnnotator;
 import org.apache.ctakes.temporal.eval.Evaluation_ImplBase.CopyNPChunksToLookupWindowAnnotations;
 import org.apache.ctakes.temporal.eval.Evaluation_ImplBase.RemoveEnclosedLookupWindows;
 import org.apache.ctakes.temporal.pipelines.FullTemporalExtractionPipeline.CopyPropertiesToTemporalEventAnnotator;
@@ -110,8 +111,8 @@ public class Pipeline {
 			//link event to eventMention
 			builder.add(AnalysisEngineFactory.createEngineDescription(AddEvent.class));
 			// Add Event to Event Relation Annotator
-			builder.add(EventTimeRelationAnnotator
-					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventtime/20150629/model.jar"));
+			builder.add(EventTimeSelfRelationAnnotator
+					.createEngineDescription("/org/apache/ctakes/temporal/ae/eventtime/20150629/model.jar"));
 			// Add Event to Event Relation Annotator
 			builder.add(EventEventRelationAnnotator
 					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventevent/20150630/model.jar"));
