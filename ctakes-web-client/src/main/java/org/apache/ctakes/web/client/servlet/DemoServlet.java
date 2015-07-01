@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.List;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +51,8 @@ public class DemoServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(DemoServlet.class);	
+        private static final NumberFormat formatter = new DecimalFormat("#0.00000");
+
 
 	// Reuse the pipeline for demo purposes
 	static AnalysisEngine pipeline;
@@ -64,30 +68,36 @@ public class DemoServlet extends HttpServlet {
 		}
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		String text = request.getParameter("q");
-		String format = request.getParameter("format");
-		LOGGER.info("###\n" + text + "###\n");
-		if (text != null && text.trim().length() > 0) {
-			try {
-				/*
-				 * Set the document text to process And run the cTAKES pipeline
-				 */
-				JCas jcas = pipeline.newJCas();
-				jcas.setDocumentText(text);
-				pipeline.process(jcas);
-				String result = formatResults(jcas, format, response);
-				jcas.reset();
-				out.println(result);
-			} catch (Exception e) {
-				throw new ServletException(e);
-			}
-		}
-	}
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+                        throws ServletException, IOException {
+long start = System.currentTimeMillis();
+                PrintWriter out = response.getWriter();
+                String text = request.getParameter("q");
+                String format = request.getParameter("format");
+                LOGGER.info("###\n" + text + "###\n");
+                if (text != null && text.trim().length() > 0) {
+                        try {
+                                /*
+                                 * Set the document text to process And run the cTAKES pipeline
+                                 */
+                                JCas jcas = pipeline.newJCas();
+                                jcas.setDocumentText(text);
+                                pipeline.process(jcas);
+                                String result = formatResults(jcas, format, response);
+                                jcas.reset();
+String elapsed = formatter.format((System.currentTimeMillis() - start) / 1000d);
+if("HTML".equalsIgnoreCase(format)) {
+result += "<p/><i> Processed in " + elapsed + " secs</i>";
+}
+                                out.println(result);
+                        } catch (Exception e) {
+                                throw new ServletException(e);
+                        }
+                }
+        }
+
+public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
