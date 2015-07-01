@@ -32,6 +32,7 @@ import org.apache.ctakes.core.ae.TokenizerAnnotatorPTB;
 import org.apache.ctakes.core.resource.FileLocator;
 import org.apache.ctakes.core.resource.FileResourceImpl;
 import org.apache.ctakes.dependency.parser.ae.ClearNLPDependencyParserAE;
+import org.apache.ctakes.dependency.parser.ae.ClearNLPSemanticRoleLabelerAE;
 import org.apache.ctakes.dictionary.lookup2.ae.AbstractJCasTermAnnotator;
 import org.apache.ctakes.dictionary.lookup2.ae.DefaultJCasTermAnnotator;
 import org.apache.ctakes.dictionary.lookup2.ae.JCasTermAnnotator;
@@ -93,6 +94,7 @@ public class Pipeline {
 	      builder.add( ClearNLPDependencyParserAE.createAnnotatorDescription() );
 	      builder.add( PolarityCleartkAnalysisEngine.createAnnotatorDescription() );
 	      builder.add( UncertaintyCleartkAnalysisEngine.createAnnotatorDescription() );
+	      builder.add( AnalysisEngineFactory.createEngineDescription( ClearNLPSemanticRoleLabelerAE.class ) );
 	      builder.add( AnalysisEngineFactory.createEngineDescription( ConstituencyParser.class ) );
 	      	
 			// Add BackwardsTimeAnnotator
