@@ -9,13 +9,25 @@
 	<packaging>war</packaging>
 	<description></description>
 	<properties>
-		<ctakes.version>3.2.2</ctakes.version>
+		<ctakes.version>3.2.3-SNAPSHOT</ctakes.version>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jettyVersion>9.2.6.v20141205</jettyVersion>
 	</properties>
-
+<repositories>
+<repository>
+    <id>apache.snapshots</id>
+    <name>Apache Development Snapshot Repository</name>
+    <url>https://repository.apache.org/content/repositories/snapshots/</url>
+    <releases>
+        <enabled>false</enabled>
+    </releases>
+    <snapshots>
+        <enabled>true</enabled>
+    </snapshots>
+</repository>
+</repositories>
 	<dependencies>
 
 		<!-- cTAKES module versions -->
@@ -278,6 +290,14 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jettyVersion}</version>
+        <configuration>
+         <systemProperties>
+            <systemProperty>
+              <name>ctakesversion</name>
+              <value>${ctakes.version}</value>
+            </systemProperty>
+         </systemProperties>
+        </configuration>
 			</plugin>
 		</plugins>
 	</build>
