@@ -36,7 +36,7 @@
 <img src="http://ctakes.apache.org/images/ctakes_logo.jpg"/>
 <form method="post" action="DemoServlet">
 <textarea rows="4" cols="50" name="q">
-Please do not paste protected patient data here....
+Your example here. (No protected health information. Submissions logged.)
 </textarea>
 <p/>
 <!-- 
