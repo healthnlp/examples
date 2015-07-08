@@ -51,7 +51,8 @@ You can request a UMLS License <a href="https://uts.nlm.nih.gov/home.html">here.
  -->
 Format:
 <select name="format">
- <option value="html" selected>HTML</option>
+ <option value="pretty" selected>Pretty Print</option>
+ <option value="html">HTML</option>
  <option value="xml">XML</option>
 </select>
 <input type="submit" />
