@@ -106,10 +106,10 @@ public class Pipeline {
 					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/eventannotator/model.jar"));
 			builder.add( AnalysisEngineFactory.createEngineDescription( CopyPropertiesToTemporalEventAnnotator.class ) );
 			// Add Document Time Relative Annotator
-   			builder.add(DocTimeRelAnnotator
-   					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/doctimerel/model.jar"));
 			//link event to eventMention
 			builder.add(AnalysisEngineFactory.createEngineDescription(AddEvent.class));
+			builder.add(DocTimeRelAnnotator
+   					.createAnnotatorDescription("/org/apache/ctakes/temporal/ae/doctimerel/model.jar"));
 			// Add Event to Event Relation Annotator
 			builder.add(EventTimeSelfRelationAnnotator
 					.createEngineDescription("/org/apache/ctakes/temporal/ae/eventtime/20150629/model.jar"));
