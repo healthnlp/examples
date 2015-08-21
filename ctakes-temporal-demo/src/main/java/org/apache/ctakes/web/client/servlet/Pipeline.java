@@ -78,20 +78,12 @@ public class Pipeline {
 
 	      builder.add( AnalysisEngineFactory.createEngineDescription( CopyNPChunksToLookupWindowAnnotations.class ) );
 	      builder.add( AnalysisEngineFactory.createEngineDescription( RemoveEnclosedLookupWindows.class ) );
-	      try {
-	         builder.add( AnalysisEngineFactory.createEngineDescription( DefaultJCasTermAnnotator.class,
+	      builder.add( AnalysisEngineFactory.createEngineDescription( DefaultJCasTermAnnotator.class,
 	               AbstractJCasTermAnnotator.PARAM_WINDOW_ANNOT_PRP,
 	               "org.apache.ctakes.typesystem.type.textspan.Sentence",
 	               JCasTermAnnotator.DICTIONARY_DESCRIPTOR_KEY,
-	               ExternalResourceFactory.createExternalResourceDescription(
-	                     FileResourceImpl.class,
-	                     FileLocator.locateFile( "org/apache/ctakes/dictionary/lookup/fast/cTakesHsql.xml" ) )
-	         ) );
-	      } catch ( FileNotFoundException e ) {
-	         e.printStackTrace();
-	         throw new ResourceInitializationException( e );
-	      }
-	      
+	               "org/apache/ctakes/dictionary/lookup/fast/cTakesHsql.xml")
+	      );
 	      builder.add( ClearNLPDependencyParserAE.createAnnotatorDescription() );
 	      builder.add( PolarityCleartkAnalysisEngine.createAnnotatorDescription() );
 	      builder.add( UncertaintyCleartkAnalysisEngine.createAnnotatorDescription() );
