@@ -39,7 +39,7 @@ public class Pipeline {
 		//builder.add(ClinicalPipelineFactory.getFastPipeline());
 	      builder.add( ClinicalPipelineFactory.getTokenProcessingPipeline() );
 	      builder.add( AnalysisEngineFactory.createEngineDescription( DefaultJCasTermAnnotator.class,
-	               AbstractJCasTermAnnotator.PARAM_WINDOW_ANNOT_PRP,
+	               AbstractJCasTermAnnotator.PARAM_WINDOW_ANNOT_KEY,
 	               "org.apache.ctakes.typesystem.type.textspan.Sentence",
 	               JCasTermAnnotator.DICTIONARY_DESCRIPTOR_KEY,
 	               "org/apache/ctakes/dictionary/lookup/fast/cTakesHsql.xml" )
