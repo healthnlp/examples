@@ -3,8 +3,8 @@ This is a hosting site for Health NLP / cTAKES components Examples and Demos
 
 ### Available Hosted Demos
 
-ctakes-dictionary-lookup-fast: [http://35.162.219.104:8080/index.jsp](http://35.162.219.104:8080/index.jsp) 
-ctakes-temporal: [http://54.68.117.30:8080/index.jsp](http://54.68.117.30:8080/index.jsp) 
+1. ctakes-dictionary-lookup-fast: [http://35.162.219.104:8080/index.jsp](http://35.162.219.104:8080/index.jsp) 
+1. ctakes-temporal: [http://54.68.117.30:8080/index.jsp](http://54.68.117.30:8080/index.jsp) 
 
 ### Adding a hosted new demo
 1. Setup an EC2 instance for demo purposes
