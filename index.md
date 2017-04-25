@@ -1,8 +1,6 @@
 ### Welcome to Health NLP Examples and Demos
 This is a hosting site for Health NLP / cTAKES components Examples and Demos
 
-
-
 ### Available Hosted Demos
 Component | URL | Description | Host | Source Code
 ------------ | ------------- | ------------- | ------------- | -------------
