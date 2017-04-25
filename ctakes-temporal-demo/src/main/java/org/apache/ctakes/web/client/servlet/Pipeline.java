@@ -82,7 +82,7 @@ public class Pipeline {
 	               AbstractJCasTermAnnotator.PARAM_WINDOW_ANNOT_KEY,
 	               "org.apache.ctakes.typesystem.type.textspan.Sentence",
 	               JCasTermAnnotator.DICTIONARY_DESCRIPTOR_KEY,
-	               "org/apache/ctakes/dictionary/lookup/fast/cTakesHsql.xml")
+	               "org/apache/ctakes/dictionary/lookup/fast/sno_rx_16ab.xml")
 	      );
 	      builder.add( ClearNLPDependencyParserAE.createAnnotatorDescription() );
 	      builder.add( PolarityCleartkAnalysisEngine.createAnnotatorDescription() );
