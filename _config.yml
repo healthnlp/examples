@@ -1,0 +1,8 @@
+title: Health NLP Examples And Demos
+description: Health NLP Examples and Demos
+google_analytics: UA-41673085-2
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
