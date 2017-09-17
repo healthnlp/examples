@@ -30,7 +30,7 @@ Though JdbcConnectionFactory will attempt to "find" a db based upon the parent d
 for the sake of ide ease-of-use, the user should be aware of these hsql limitations.
 -->
          <property key="jdbcDriver" value="org.hsqldb.jdbcDriver"/>
-         <property key="jdbcUrl" value="jdbc:hsqldb:file:src/main/resources/org/apache/ctakes/dictionary/lookup/fast/sno_rx_16ab/sno_rx_16ab"/>
+         <property key="jdbcUrl" value="jdbc:hsqldb:file:org/apache/ctakes/dictionary/lookup/fast/sno_rx_16ab/sno_rx_16ab"/>
          <property key="jdbcUser" value="sa"/>
          <property key="jdbcPass" value=""/>
          <property key="rareWordTable" value="cui_terms"/>
@@ -48,7 +48,7 @@ for the sake of ide ease-of-use, the user should be aware of these hsql limitati
       <implementationName>org.apache.ctakes.dictionary.lookup2.concept.JdbcConceptFactory</implementationName>
       <properties>
          <property key="jdbcDriver" value="org.hsqldb.jdbcDriver"/>
-         <property key="jdbcUrl" value="jdbc:hsqldb:file:src/main/resources/org/apache/ctakes/dictionary/lookup/fast/sno_rx_16ab/sno_rx_16ab"/>
+         <property key="jdbcUrl" value="jdbc:hsqldb:file:org/apache/ctakes/dictionary/lookup/fast/sno_rx_16ab/sno_rx_16ab"/>
          <property key="jdbcUser" value="sa"/>
          <property key="jdbcPass" value=""/>
          <property key="umlsUrl" value="https://uts-ws.nlm.nih.gov/restful/isValidUMLSUser"/>

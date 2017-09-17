@@ -1,0 +1,8 @@
+target
+
+# IntelliJ project files
+*.iml
+
+# Temporary execution files
+*.log
+
